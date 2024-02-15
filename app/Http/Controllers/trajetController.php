@@ -7,17 +7,20 @@ use Illuminate\Http\Request;
 
 class trajetController extends Controller
 {
-    public function createTrajet(Request $request)
+    public function createTrajet (Request $request)
     {
 
-        $trajet = trajet::create([
-          
+        $trajet =$request->validate([
+            'departure' => ['required'],
+            'destination' => ['required'],
         ]);
- 
-    
-        return response()->json($trajet, 200);
+        
+        $trajet['user_id'] = auth()->id();
+        trajet::create($trajet);
+       return response()->json($trajet, 200);
     }
     
+  
 
 }
 

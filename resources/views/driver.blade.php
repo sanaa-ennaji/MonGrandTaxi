@@ -69,32 +69,36 @@
       </nav>
     {{-- end navbar  --}}
 
+ {{-- create trajet  --}}
+ <div class="max-w-sm mx-5 mt-20 bg-white rounded-md shadow-md overflow-hidden">
+  <div class="px-6 py-4 bg-yellow-600 text-white">
+      <h1 class="text-lg font-bold">Create trajet</h1>
+  </div>
 
- {{-- create  --}}
-      <div class="max-w-sm mx-5 mt-20 bg-white rounded-md shadow-md overflow-hidden">
-        <div class="px-6 py-4 bg-yellow-600 text-white">
-            <h1 class="text-lg font-bold">Create trajet</h1>
-        </div>
-        <div class="px-6 py-4">
-            <div class="mb-4">
-               
-                    <label for="depart" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">depart</label>
-                    <select name="departure" id="depart" class="citySelect bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                      <option selected value="">Choose your departure </option>
-                    </select>
-               
-                            </div>
-            <div class="mb-4">
-         <label for="city" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">destenation</label>
-        <select id="city" name="destination" class="citySelect bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-        <option selected value="">Choose a destination</option>
-     </select>
-     </div>
-            <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-full" type="submit">
-                create
-            </button>
-        </div>
-    </div>
+  <form class="px-6 py-4" action="/createTrajet" method="POST">
+    @csrf
+      <div class="mb-4">
+          <label for="depart" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">depart</label>
+          <select name="departure" id="depart"
+              class="citySelect bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              <option selected value="">Choose your departure </option>
+          </select>
+
+      </div>
+      <div class="mb-4">
+          <label for="city"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">destenation</label>
+          <select id="city" name="destination"
+              class="citySelect bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              <option selected value="">Choose a destination</option>
+          </select>
+      </div>
+      <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-full" type="submit">
+          create
+      </button>
+  </form>
+
+</div>
 
 {{-- end create --}}
       @else

@@ -10,7 +10,7 @@ class trajet extends Model
     use HasFactory;
    
         protected $fillable = [
-            'user_id', 'departure', 'destination' , 'status',
+             'departure', 'destination' , 'status', 'user_id',
         ];
     
         public function taxi()

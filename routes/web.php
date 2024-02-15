@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\trajetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,8 +31,12 @@ Route::get('/driver', function () {
 Route::get('/register', function () {
     return view('register');
 });
+Route::get('/format', function () {
+    return view('format');
+});
 
 Route::post('/registerD', [UserController::class, 'registerDriver']);
 Route::post('/registerP', [UserController::class, 'registerPassanger']);
 Route::post('/logout', [UserController::class, 'logout']);
 Route::post('/login', [UserController::class, 'login']);
+Route::post('/createTrajet' ,[trajetController::class , 'createTrajet']);

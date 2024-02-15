@@ -12,15 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('trajets', function (Blueprint $table) {
-            Schema::create('table_trajets', function (Blueprint $table) {
                 $table->id();
                 $table->string('departure');
                 $table->string('destination');
                 $table->string('status')->default('available');
-                $table->foreignId('user_id')->constrained(); 
+                $table->foreignId('user_id')->constrained();
                 $table->timestamps();
             });
-        });
+       
     }
     /**
      * Reverse the migrations.

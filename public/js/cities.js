@@ -10,14 +10,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
             data.forEach(city => {
                 const option = document.createElement('option');
-                option.value = city.id;
+                option.value = city.ville;
                 option.textContent = city.ville;
                 departSelect.appendChild(option);
             });
 
             data.forEach(city => {
                 const option = document.createElement('option');
-                option.value = city.id;
+                option.value = city.ville;
                 option.textContent = city.ville;
                 citySelect.appendChild(option);
             });
