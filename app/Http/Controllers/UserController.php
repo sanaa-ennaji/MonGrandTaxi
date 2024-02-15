@@ -58,14 +58,16 @@ class UserController extends Controller
          }
          
          $datad['password'] = bcrypt($datad['password']);
-         User::create($datad);
+        $user= User::create($datad);
+        auth()->login($user);
+
            return redirect('/home');
       }
 
 
       public function logout (){
         auth()->logout();
-        return redirect('/user') ;
+        return redirect('/home') ;
     }
 
     public function login(Request $request)
