@@ -18,6 +18,7 @@
 <body>
 
 @auth
+{{-- navbar --}}
     <nav class="bg-white border-gray-200 dark:bg-gray-900">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
@@ -66,9 +67,37 @@
         </div>
         </div>
       </nav>
+    {{-- end navbar  --}}
+
+
+ {{-- create  --}}
+      <div class="max-w-sm mx-5 mt-20 bg-white rounded-md shadow-md overflow-hidden">
+        <div class="px-6 py-4 bg-yellow-600 text-white">
+            <h1 class="text-lg font-bold">Create trajet</h1>
+        </div>
+        <div class="px-6 py-4">
+            <div class="mb-4">
+               
+                    <label for="depart" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">depart</label>
+                    <select name="departure" id="depart" class="citySelect bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                      <option selected value="">Choose your departure </option>
+                    </select>
+               
+                            </div>
+            <div class="mb-4">
+         <label for="city" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">destenation</label>
+        <select id="city" name="destination" class="citySelect bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <option selected value="">Choose a destination</option>
+     </select>
+     </div>
+            <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-full" type="submit">
+                create
+            </button>
+        </div>
+    </div>
+
+{{-- end create --}}
       @else
-
-
       <main class="grid min-h-full place-items-center bg-white px-6  lg:px-8">
         <div class="text-center">
             <img src="img/404.png" alt="">
@@ -80,8 +109,7 @@
           </div>
         </div>
       </main>
-
       @endauth
-      
+      <script src="js/cities.js"></script>
 </body>
 </html>
