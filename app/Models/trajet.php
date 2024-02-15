@@ -10,12 +10,12 @@ class trajet extends Model
     use HasFactory;
    
         protected $fillable = [
-            'Driver_id', 'departure', 'destination', 'start_time', 'status',
+            'user_id', 'departure', 'destination', 'start_time', 'status',
         ];
     
         public function taxi()
         {
-            return $this->belongsTo(user::class, 'Driver_id');
+            return $this->belongsTo(user::class, 'user_id');
         }
     
         
