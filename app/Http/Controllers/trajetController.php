@@ -11,10 +11,7 @@ class trajetController extends Controller
     {
 
         $trajet = trajet::create([
-            'taxi_id' => $taxi,
-            'departure_location' => $departureLocation,
-            'destination_location' => $destinationLocation,
-            'start_time' => $startTime,
+          
         ]);
  
     

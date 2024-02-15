@@ -11,13 +11,13 @@ class UserController extends Controller
 {
     public function registerDriver(Request $request)
     { 
-        
+
         $data = $request->validate([
             'name' => ['required'],
             'email' => ['required'],
             'password'=>['required'],
             'phone' => ['required'],
-            'profile' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
+            'profile' => ['nullable', 'image','mimes:jpeg,png,jpg,gif'],
             'description' => ['required'],
             'Num_immatriculation' => ['required'],
             'vehicle' => ['required'],
@@ -82,12 +82,13 @@ class UserController extends Controller
     
         
             if ($user->role === 'admin') {
-                return redirect('/admin-dashboard');
+                return redirect('/admin');
             } elseif ($user->role === 'Passanger') {
-                return redirect('/passenger-profile');
+                return redirect('/passenger');
             } elseif ($user->role === 'Driver') {
-                return redirect('/driver-dashboard');
+                return redirect('/driver');
             }
+
         }
 
         return redirect()->back()->with('error', 'Invalid credentials');

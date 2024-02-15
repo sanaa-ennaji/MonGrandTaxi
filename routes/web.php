@@ -20,8 +20,11 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('home');
 });
-Route::get('/trajet', function () {
-    return view('trajet');
+Route::get('/ERROR404', function () {
+    return view('404');
+});
+Route::get('/driver', function () {
+    return view('driver');
 });
 Route::get('/register', function () {
     return view('register');

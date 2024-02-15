@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MonGrandTaxi™</title>
-    <meta name="description" content="Get started with a free landing page built with Tailwind CSS and the Flowbite Blocks system.">
+    <meta name="description">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/d0fb25e48c.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
@@ -261,29 +261,27 @@
                     <span class="sr-only">Close modal</span>
                 </button>
             </div>
-            <!-- Modal body -->
-           {{-- login --}}
             <form class="w-full p-8" action="/login" method="POST">
                 @csrf 
                 <h2 class="text-2xl font-semibold text-gray-700 text-center">GrandTaxi</h2>
                 <p class="text-xl text-gray-600 text-center">Welcome back!</p>
                 <div class="mt-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2">Email Address</label>
-                    <input class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="email">
+                    <input name="logemail" class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="email">
                 </div>
                 <div class="mt-4">
                     <div class="flex justify-between">
                         <label class="block text-gray-700 text-sm font-bold mb-2">Password</label>
                         <a href="#" class="text-xs text-gray-500">Forget Password?</a>
                     </div>
-                    <input class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="password">
+                    <input name="logpassword" class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="password">
                 </div>
                 <div class="mt-8">
                     <button class="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600" type="submit">Login</button>
                 </div>
                 <div class="mt-4 flex items-center justify-between">
                     <span class="border-b w-1/5 md:w-1/4"></span>
-                    <a href="#" class="text-xs text-gray-500 uppercase">or sign up</a>
+                    <a href="#" class="text-xs text-gray-500 uppercase"> sign up</a>
                     <span class="border-b w-1/5 md:w-1/4"></span>
                 </div>
             </form>
@@ -291,13 +289,6 @@
         </div>
     </div>
 </div>
-
-
-  
-    <!-- Modal toggle -->
-{{-- <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-    Toggle modal
-  </button> --}}
   
   <!-- Main modal -->
   <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
