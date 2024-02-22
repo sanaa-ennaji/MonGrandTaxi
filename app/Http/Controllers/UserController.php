@@ -37,8 +37,6 @@ class UserController extends Controller
           return redirect('/home');
      }
 
-
-
      public function registerPassanger(Request $request)
      { 
          
@@ -86,7 +84,7 @@ class UserController extends Controller
             if ($user->role === 'admin') {
                 return redirect('/admin');
             } elseif ($user->role === 'Passanger') {
-                return redirect('/passenger');
+                return redirect('/trajet');
             } elseif ($user->role === 'Driver') {
                 return redirect('/driver');
             }

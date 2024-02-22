@@ -14,22 +14,60 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
 
     <title>Document</title>
+    <style>
+        #bgf{
+       background-color: rgb(225, 232, 153)
+           
+        }
+    </style>
 </head>
-<body>
+<body id="bgf">
 
-@auth
+
+@if(auth()->user()->role == 'Driver')
 {{-- navbar --}}
     <nav class="bg-white border-gray-200 dark:bg-gray-900">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src="img/Yellow.png" class="h-8" alt="Flowbite Logo" />
-            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">GrandTaxi</span>
+          <a href="#" class="flex items-center ">
+            {{-- <img src="img/Yellow.png" class="mr-3 h-6 sm:h-9" alt="Logo" /> --}}
+            <h2 class="font-bold text-2xl">Grand<span class="bg-[#FFD700] text-white px-2 rounded-md">Taxi</span></h2>
         </a>
+        <div class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
+          <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+              <li>
+                  <a href="/home" class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0" aria-current="page">Home</a>
+              </li>
+              <li>
+                  <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 lg:dark:hover:text-white lg:dark:hover:bg-transparent">Home</a>
+              </li>
+            
+              <li>
+                  <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 lg:dark:hover:text-white lg:dark:hover:bg-transparent">contact</a>
+              </li>
+              <li>
+                  <a href="/reservation" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 lg:dark:hover:text-white lg:dark:hover:bg-transparent">reservations</a>
+              </li>
+              {{-- <li>
+                  <a href="/trajet" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 lg:dark:hover:text-white lg:dark:hover:bg-transparent">trajets</a>
+              </li> --}}
+          </ul>
+      </div>
         <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-            <button type="button" class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
-              <span class="sr-only">Open user menu</span>
-              <img class="w-8 h-8 rounded-full" src="{{ asset('storage/img/' . auth()->user()->profile)}}" alt="user photo">
-            </button>
+
+
+          <button type="button" class="dropdown-toggle flex items-center" id="user-menu-button" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+            <div class="flex-shrink-0 w-10 h-10 relative">
+                <div class="p-1 bg-white rounded-full focus:outline-none focus:ring">
+                    <img class="w-10 h-8 rounded-full" src="{{ asset('storage/img/' . auth()->user()->profile)}}" alt="user photo"/>
+                 
+                </div>
+            </div>
+            <div class="px-2 md:block text-left">
+                <h2 class="text-sm font-semibold text-gray-800">{{ auth()->user()->name}}</h2>
+                <p class="text-xs text-gray-500">{{ auth()->user()->role}}</p>
+            </div>                
+        </button>
+        
             <!-- Dropdown menu -->
             <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
               <div class="px-4 py-3">
@@ -56,7 +94,7 @@
               </ul>
             </div>
             <button data-collapse-toggle="navbar-user" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-user" aria-expanded="false">
-              <span class="sr-only">Open main menu</span>
+              <span class="sr-only"> menu</span>
               <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
               </svg>
@@ -67,53 +105,139 @@
         </div>
         </div>
       </nav>
-    {{-- end navbar  --}}
 
- {{-- create trajet  --}}
- <div class="max-w-sm mx-5 mt-20 bg-white rounded-md shadow-md overflow-hidden">
-  <div class="px-6 py-4 bg-yellow-600 text-white">
-      <h1 class="text-lg font-bold">Create trajet</h1>
-  </div>
 
-  <form class="px-6 py-4" action="/createTrajet" method="POST">
-    @csrf
-      <div class="mb-4">
-          <label for="depart" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">depart</label>
-          <select name="departure" id="depart"
-              class="citySelect bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-              <option selected value="">Choose your departure </option>
-          </select>
-
+         {{-- create trajet  --}}
+         <div class="lg:grid lg:grid-cols-2">
+    <div class=" max-w-sm ml-10 mt-20 bg-white rounded-md shadow-md overflow-hidden h-80">
+      <div class="px-6 py-4 bg-yellow-600 text-white">
+          <h1 class="text-lg font-bold">Create trajet</h1>
       </div>
-      <div class="mb-4">
-          <label for="city"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">destenation</label>
-          <select id="city" name="destination"
-              class="citySelect bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-              <option selected value="">Choose a destination</option>
-          </select>
-      </div>
-      <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-full" type="submit">
-          create
-      </button>
-  </form>
-
-</div>
-
+    
+      <form class="px-6 py-4" action="/createTrajet" method="POST">
+        @csrf
+          <div class="mb-4">
+              <label for="depart" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">depart</label>
+              <select name="departure" id="depart"
+                  class="citySelect bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                  <option selected value="">Choose your departure </option>
+              </select>
+    
+          </div>
+          <div class="mb-4">
+              <label for="city"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">destenation</label>
+              <select id="city" name="destination"
+                  class="citySelect bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                  <option selected value="">Choose a destination</option>
+              </select>
+          </div>
+          <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-full" type="submit">
+              create
+          </button>
+      </form>
+    </div>
 {{-- end create --}}
-      @else
+
+ <div aria-label=" group of cards" tabindex="0" class="focus:outline-none py-8 items-center">
+  <div class="lg:flex-col items-center justify-center w-full">
+    @foreach ($trajets as $trajet)
+    <div tabindex="0" aria-label="card 1" class="focus:outline-none lg:w-9/12 lg:mr-7 mb-10 bg-white p-6 shadow rounded">
+                  <div class="flex items-center border-b border-gray-200 pb-6">
+                      <img src="{{ asset('storage/img/' . auth()->user()->profile)}}" alt="coin avatar" class="w-12 h-12 rounded-full" />
+                      <div class="flex items-start justify-between w-full">
+                          <div class="pl-3 w-full">
+                              <p tabindex="0" class="focus:outline-none text-xl font-medium leading-5 text-gray-800">{{ auth()->user()->name}}</p>
+                          
+                          </div>
+                          <div role="img" aria-label="bookmark">
+                          <svg  class="focus:outline-none" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.5001 4.66667H17.5001C18.1189 4.66667 18.7124 4.9125 19.15 5.35009C19.5876 5.78767 19.8334 6.38117 19.8334 7V23.3333L14.0001 19.8333L8.16675 23.3333V7C8.16675 6.38117 8.41258 5.78767 8.85017 5.35009C9.28775 4.9125 9.88124 4.66667 10.5001 4.66667Z" stroke="#2C3E50" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="px-2">
+
+                    <div  class="text-sm font-semibold flex items-center space-x-2">
+                      <button class="text-sm font-semibold flex items-center space-x-2">
+                        <span>{{$trajet['destination']}}</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                      </button>
+                      <button class="text-sm font-semibold flex items-center space-x-2 py-5">
+                        <span>{{$trajet['departure']}}</span>
+                      </button>
+                    </div> 
+                      <div tabindex="0" class="focus:outline-none flex">
+                          <form action="/delete/{{$trajet->id}}" method="POST" class="py-2 px-4 text-xs leading-3 text-indigo-700 rounded-full bg-yellow-100">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">delete</button>
+                          </form>
+                         
+                         {{-- <div class="py-2 px-4 text-xs leading-3 text-indigo-700 rounded-full bg-yellow-100">
+                            <button id="button{{ $trajet->id }}" onclick="toggleModal('progress-modal{{ $trajet->id }}', 'button{{ $trajet->id }}')">update</button>
+                          </div> --}}
+                      </div>
+                  </div>
+              </div>
+
+
+              <div id="progress-modal{{ $trajet->id }}"
+                class="hidden fixed inset-0 z-50 justify-center items-center w-full h-full">
+                <div class="relative p-4 w-full max-w-md max-h-full">
+                  <!-- Modal content -->
+                  <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              
+                        <form class="p-4 md:p-5 mt-5" method="POST" action="/update">
+                            @csrf
+                          
+                            <div class="relative">
+                             
+                              <label for="depart" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">depart</label>
+                              <select name="departure" id="depart"
+                                  class="citySelect bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                  <option selected value="available">available</option>
+                                  <option selected value="not available">not available</option>
+                                
+                              </select>
+                            </div>
+                            
+                            <!-- Modal footer -->
+                            <div class="flex items-center mt-6 space-x-4 rtl:space-x-reverse">
+                                <button type="submit"
+                                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">confirm</button>
+                                    <button onclick="closeModal('progress-modal{{ $trajet->id }}')" type="button" class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Cancel</button>
+          
+                                {{-- <button onclick="toggleModal('progress-modal{{ $trajet->id }}')" type="button"
+                                    class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Cancel</button> --}}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+          
+            </div>
+       @endforeach
+         
+      </div>
+    </div>
+    </div>
+    @else
       <main class="grid min-h-full place-items-center bg-white px-6  lg:px-8">
         <div class="text-center">
             <img src="img/404.png" alt="">
             <h1 class="text-3xl font-bold tracking-tight text-yellow-500 sm:text-5xl">Page not found</h1>
        
           <div class="mt-6 flex items-center justify-center gap-x-5">
-            <a href="#" class="rounded-md bg-yellow-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-yellow-600  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Go back home</a>
+            <a href="/home" class="rounded-md bg-yellow-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-yellow-600  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Go back home</a>
             <a href="#" class="text-sm font-semibold text-gray-900">Contact support <span aria-hidden="true">&rarr;</span></a>
           </div>
         </div>
       </main>
-      @endauth
+      @endif
       <script src="js/cities.js"></script>
+     
 </body>
 </html>
