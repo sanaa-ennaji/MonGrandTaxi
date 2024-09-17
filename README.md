@@ -1,4 +1,4 @@
-## Brif13 : Plateforme de Réservation de Grands Taxis - MonGrandTaxi
+## Brif13 : Plateforme de Réservation de Grands Taxis
 
 La société **MonGrandTaxi** souhaite développer une plateforme de réservation de grands taxis, permettant aux utilisateurs de trouver des chauffeurs disponibles pour des trajets spécifiques, et aux chauffeurs de publier leurs disponibilités. Vous êtes chargé(e) de développer cette plateforme en utilisant le framework Laravel.
 
